@@ -56,9 +56,10 @@ namespace YutubVideoDownloader
 
         private void btnDownload_Click(object sender, EventArgs e)
         {
-            dm.DownloadFileName = string.Format("{0}.{1}", yutub.VideoTitle, yutub.FormatList[cbFormat.SelectedIndex].VideoExt);
+            YutubFileFormat fmt = (YutubFileFormat)cbFormat.SelectedItem;
+            dm.DownloadFileName = string.Format("{0}.{1}", yutub.VideoTitle, fmt.VideoExt);
             dm.DownloadPath = txtDownloadPath.Text;
-            dm.DownloadURL = yutub.FormatList[cbFormat.SelectedIndex].DownloadURL;
+            dm.DownloadURL = fmt.DownloadURL;
             dm.onDownloading += new dlgDownlading(dm_onDownloading);
             dm.Start();
         }
